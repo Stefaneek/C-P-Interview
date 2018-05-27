@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="content">
+    <div>
+      <button mat-raised-button color="primary" (click)="reloadData()">Reload data!</button>
+      <mat-select style="width:145px; margin-left:1rem;" (valueChange)="sort($event)" placeholder="Sort by last name">
+        <mat-option *ngFor="let option of sortOptions" [value]="option.value">
+          {{ option.viewValue }}
+        </mat-option>
+      </mat-select>
+    </div>
+    <!-- <mat-spinner strokeWidth="3" [diameter]="100" mode="indeterminate"></mat-spinner> -->
+    <div class="container--list">
+      <h1>People list</h1>
+      <mat-list style="width: 100%;">
+        <ng-container *ngFor="let person of peopleDataService.peopleArray | async">
+          <mat-list-item (click)="routeToPerson(person)" class="container--list-element">
+            <img matListAvatar [src]="person.avatar" alt="...">
+            <h2 matLine> {{person.first_name}} {{person.last_name}}</h2>
+            <hr>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </ng-container>
+      </mat-list>
+    </div>
+  </div>
+
+</div>

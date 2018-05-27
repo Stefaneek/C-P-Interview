@@ -1,0 +1,7 @@
+<div id="loader" [class.loader-hidden]="!(loaderService.loader | async)">
+  <div class="loader-overlay">
+    <div>
+      <mat-spinner mode="indeterminate" *ngIf="(loaderService?.loader | async)"></mat-spinner>
+    </div>
+  </div>
+</div>

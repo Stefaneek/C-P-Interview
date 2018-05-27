@@ -1,0 +1,39 @@
+.container{
+    display: flex;
+    justify-content: center;
+    height: 98vh;
+    width: 100%;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 60%;
+}
+
+.container--list{
+    display: flex;
+    flex:0 0 60%;
+    width:100%;
+    flex-direction: column;
+    &-element{
+        cursor: pointer;
+        width: 100%;
+        -webkit-transition-duration: 0.4s;
+        /* Safari */
+        transition-duration: 0.4s;
+        &:hover{
+            background-color: #673ab7;
+        }
+    }
+}
+
+:host #{"/deep/"} .mat-dialog-container  {
+    overflow: hidden;
+}
+
+mat-list {
+    flex-grow: 1;
+    overflow: auto;
+}
