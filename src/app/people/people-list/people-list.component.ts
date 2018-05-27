@@ -14,7 +14,7 @@ import { People } from '../shared/people.mode';
   styleUrls: ['./people-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PeopleList implements OnInit {
+export class PeopleListComponent implements OnInit {
   people = PEOPLE;
   sortOptions = [
     { value: 'asc', viewValue: 'Ascending' },
@@ -91,7 +91,7 @@ export class PeopleList implements OnInit {
 
   getPeople() {
     this.activatedRoute.params.subscribe((params) => {
-      const peopleId = params['id'];
+      const peopleId = params ? params['id'] : null;
       if (peopleId) {
         this.openDialog(peopleId);
       }
@@ -100,13 +100,10 @@ export class PeopleList implements OnInit {
           this.people = people;
           if (!people) {
             this.peopleDataService.changePeopleArray(PEOPLE);
-            this.peopleDataService.peopleArray$.subscribe(data => {
-            });
+
           }
           else {
             this.peopleDataService.changePeopleArray(people);
-            this.peopleDataService.peopleArray$.subscribe(data => {
-            });
           }
         })
       }

@@ -10,7 +10,7 @@ import { routes } from './app.routes';
 import { ErrorComponent } from './error/error.component';
 import { CacheInterceptor } from './http-interceptors/cache-interceptor.service';
 import { LoaderComponent } from './loader/loader.component';
-import { PeopleList } from './people/people-list/people-list.component';
+import { PeopleListComponent } from './people/people-list/people-list.component';
 import { PersonProfileComponent } from './people/person-profile/person-profile.component';
 import { RequestCacheService } from './http-interceptors/request-cache.service';
 import { LoaderService } from './loader/shared/loader.service';
@@ -18,7 +18,7 @@ import { LoaderService } from './loader/shared/loader.service';
 @NgModule({
   declarations: [
     AppComponent,
-    PeopleList,
+    PeopleListComponent,
     PersonProfileComponent,
     ErrorComponent,
     LoaderComponent
@@ -35,7 +35,7 @@ import { LoaderService } from './loader/shared/loader.service';
     LoaderService,
     { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true }
   ],
-  exports: [PersonProfileComponent, PeopleList, ErrorComponent],
+  exports: [PersonProfileComponent, PeopleListComponent, ErrorComponent],
   entryComponents: [
     ErrorComponent,
     PersonProfileComponent

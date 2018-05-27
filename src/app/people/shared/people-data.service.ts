@@ -16,11 +16,9 @@ import { ErrorComponent } from '../../error/error.component';
 })
 export class PeopleDataService {
   private subject = new BehaviorSubject<People>(null);
-  people$: Observable<People> = this.subject.asObservable();
+  person$: Observable<People> = this.subject.asObservable();
   private arraySubject = new BehaviorSubject<People[]>(new Array<People>());
   peopleArray$: Observable<People[]> = this.arraySubject.asObservable();
-  private searchingSubject = new BehaviorSubject<boolean>(false);
-  isSearching$: Observable<boolean> = this.searchingSubject.asObservable();
   constructor(private httpClient: HttpClient, private loaderService: LoaderService, public snackBar: MatSnackBar) { }
 
   getPeople(): Observable<People[]> {
@@ -46,23 +44,18 @@ export class PeopleDataService {
   }
 
   errorHandler(error: any): void {
-    this.changeIsSearching(false);
     this.snackBar.openFromComponent(ErrorComponent, {
       duration: 1500,
       data: error.error
     });
   }
 
-  changePeople(people: People) {
-    this.subject.next(people)
+  changePerson(person: People) {
+    this.subject.next(person)
   }
 
   changePeopleArray(people: People[]) {
     this.arraySubject.next(people)
-  }
-
-  changeIsSearching(searching: boolean) {
-    this.searchingSubject.next(searching)
   }
 
   private handleError<T>(operation = 'operation') {
@@ -71,7 +64,7 @@ export class PeopleDataService {
       console.error(error); // log to console instead
       this.snackBar.openFromComponent(ErrorComponent,{
         duration: 1500,
-        data: error.message
+        data: error.error.error
       });
       this.loaderService.hide();
       const message = (error.error instanceof ErrorEvent) ?
@@ -84,12 +77,8 @@ export class PeopleDataService {
 
   }
 
-  get isSearching(): Observable<boolean> {
-    return this.isSearching$;
-  }
-
-  get people(): Observable<People> {
-    return this.people$;
+  get person(): Observable<People> {
+    return this.person$;
   }
 
   get peopleArray(): Observable<People[]> {

@@ -1,10 +1,10 @@
-<mat-card class="dialog-content" *ngIf="!(loaderService.loaderSubject | async)" [style.background-image]="'url(' + (peopleDataService.people | async)?.background_url + ')'">
+<mat-card class="dialog-content" *ngIf="!(loaderService.loaderSubject | async)" [style.background-image]="'url(' + (peopleDataService.person | async).background_url + ')'">
   <h1>People profile</h1>
   <mat-card-header>
-    <div mat-card-avatar [style.background-image]="'url(' + (peopleDataService.people | async)?.avatar + ')'" class="example-header-image"></div>
-    <mat-card-title>Id: {{(peopleDataService.people | async)?.id}}</mat-card-title>
-    <mat-card-title>Name: {{(peopleDataService.people | async)?.first_name}} {{(peopleDataService.people | async)?.last_name}}</mat-card-title>
-    <mat-card-title>Age: {{(peopleDataService.people | async)?.age}}</mat-card-title>
+    <div mat-card-avatar [style.background-image]="'url(' + (peopleDataService.person | async)?.avatar + ')'" class="example-header-image"></div>
+    <mat-card-title>Id: {{(peopleDataService.person | async).id}}</mat-card-title>
+    <mat-card-title>Name: {{(peopleDataService.person | async).first_name}} {{(peopleDataService.person | async).last_name}}</mat-card-title>
+    <mat-card-title>Age: {{(peopleDataService.person | async).age}}</mat-card-title>
   </mat-card-header>
   <mat-card-actions>
     <button mat-dialog-close mat-button>Close</button>

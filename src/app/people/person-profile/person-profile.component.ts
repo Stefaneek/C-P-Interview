@@ -25,13 +25,7 @@ export class PersonProfileComponent implements OnInit {
       this.peopleDataService.getPeopleById(this.peopleId).subscribe(
         (people: People) => {
           this.people = people
-          if (!people) {
-            // for testing purpose
-            this.peopleDataService.changePeople(PEOPLE[0])
-          }
-          else {
-            this.peopleDataService.changePeople(people);
-          }
+            this.peopleDataService.changePerson(people);
         },
         error => { },
         () => { });

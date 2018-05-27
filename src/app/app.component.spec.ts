@@ -3,11 +3,11 @@ import { AppComponent } from './app.component';
 import { LoaderComponent } from './loader/loader.component';
 import { RouterOutlet, RouterModule } from '@angular/router';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
-import { LoaderService } from './service/loader.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from './app.routes';
-import { MainComponent } from './main/main.component';
-import { PersonProfileComponent } from './person-profile/person-profile.component';
+import { PersonProfileComponent } from './people/person-profile/person-profile.component';
+import { LoaderService } from './loader/shared/loader.service';
+import { PeopleListComponent } from './people/people-list/people-list.component';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -15,7 +15,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         LoaderComponent,
-        MainComponent,
+        PeopleListComponent,
         PersonProfileComponent
       ],
       providers: [

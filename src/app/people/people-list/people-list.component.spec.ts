@@ -7,21 +7,21 @@ import { AngularMaterialModule } from '../../angular-material/angular-material.m
 import { PeopleDataServiceMock, PEOPLE } from '../../testing/people-data.service.mock';
 import { RouterStub, ActivatedRouteStub } from '../../testing/router-stubs';
 import { newEvent } from '../../testing/async-observable-helpers';
-import { PeopleList } from './people-list.component';
+import { PeopleListComponent } from './people-list.component';
 import { PeopleDataService } from '../shared/people-data.service';
 import { RequestCacheService } from '../../http-interceptors/request-cache.service';
 
 
-let component: PeopleList;
-let fixture: ComponentFixture<PeopleList>;
+let component: PeopleListComponent;
+let fixture: ComponentFixture<PeopleListComponent>;
 let el: HTMLElement;
 let select: HTMLElement;
 let page: Page;
 let service: PeopleDataService;
-describe('PeopleList', () => {
+describe('PeopleListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PeopleList],
+      declarations: [PeopleListComponent],
       imports: [AngularMaterialModule],
       providers: [
         { provide: PeopleDataService, useClass: PeopleDataServiceMock },
@@ -33,7 +33,7 @@ describe('PeopleList', () => {
       ]
     })
     .compileComponents();
-    fixture = TestBed.createComponent(PeopleList);
+    fixture = TestBed.createComponent(PeopleListComponent);
     component = fixture.componentInstance;
     page = new Page();
     el = fixture.nativeElement.querySelector('.container--list');
@@ -46,20 +46,18 @@ describe('PeopleList', () => {
     expect(component).toBeTruthy();
   });
 
-  it('1st people should match 1st test people', fakeAsync(() => {
+  it('1st people should match 1st test people', () => {
     const expectedPeople = PEOPLE[0];
-    tick();
     fixture.detectChanges();
     expect(component.people[0].id).toBe(expectedPeople.id, '1st people should match 1st test people');
-  }));
+  });
 
-  it('all people are displayed', fakeAsync(() => {
+  it('all people are displayed', () => {
     const expectedPeopleLength = PEOPLE.length;
-    tick();
     fixture.detectChanges();
     const listItem = el.querySelectorAll('.mat-list-item');
     expect(listItem.length).toBe(expectedPeopleLength, 'expect people length to be 3');
-  }));
+  });
 
   it('should navigate to selected people detail on click', () => {
     const expectedPeople = PEOPLE[1];
@@ -101,7 +99,7 @@ describe('PeopleList', () => {
 
 function createComponent() {
   page = new Page();
-  fixture = TestBed.createComponent(PeopleList);
+  fixture = TestBed.createComponent(PeopleListComponent);
   component = fixture.componentInstance;
 
   // change detection triggers ngOnInit which gets a hero

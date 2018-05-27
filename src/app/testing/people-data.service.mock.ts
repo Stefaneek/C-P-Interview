@@ -15,7 +15,7 @@ export class PeopleDataServiceMock  {
     peopleArrayClone = PEOPLE.map(p => p.clone());
     lastPromise: Promise<any>;
     private subject = new BehaviorSubject<People>(null);
-    people$: Observable<People> = this.subject.asObservable();
+    person$: Observable<People> = this.subject.asObservable();
     private arraySubject = new BehaviorSubject<People[]>(new Array<People>());
     peopleArray$: Observable<People[]> = this.arraySubject.asObservable();
     private searchingSubject = new BehaviorSubject<boolean>(false);
@@ -32,24 +32,20 @@ export class PeopleDataServiceMock  {
         return of(people);
     }
 
-    changePeople(people: People) {
-        this.subject.next(people)
+    changePerson(person: People) {
+        this.subject.next(person)
     }
 
     changePeopleArray(people: People[]) {
         this.arraySubject.next(people)
     }
 
-    changeIsSearching(searching: boolean) {
-        this.searchingSubject.next(searching)
-    }
-
     get isSearching(): Observable<boolean> {
         return this.isSearching$;
     }
 
-    get people(): Observable<People> {
-        return this.people$;
+    get person(): Observable<People> {
+        return this.person$;
     }
 
     get peopleArray(): Observable<People[]> {

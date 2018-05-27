@@ -11,7 +11,8 @@ import { LoaderService } from '../../loader/shared/loader.service';
 
 let fixture: ComponentFixture<PersonProfileComponent>;
 let component: PersonProfileComponent;
-let service: PeopleDataService
+let service: PeopleDataService;
+let loaderService: LoaderService;
 let el: HTMLElement;
 let select: HTMLElement;
 let page: Page;
@@ -35,38 +36,32 @@ describe('PersonProfileComponent', () => {
       .compileComponents();
     fixture = TestBed.createComponent(PersonProfileComponent);
     service = fixture.debugElement.injector.get(PeopleDataService);
-    spy = spyOn(service, 'changePeople');
+    loaderService = fixture.debugElement.injector.get(LoaderService);
     component = fixture.componentInstance;
     page = new Page();
-    el = fixture.nativeElement.querySelector('.dialog-content');
+    loaderService.hide();
   }));
 
   it('should show header  ', () => {
     fixture.detectChanges();
+    el = fixture.nativeElement.querySelector('.dialog-content');
     const content = el.textContent;
     expect(content).toContain('People profile', '"People profile"');
   });
 
   it('should show people after component initialized', fakeAsync(() => {
-    const expectedPeople = PEOPLE[0];
     tick();
     fixture.detectChanges();
-    expect(component.people.id).toBe(expectedPeople.id);
+    expect(component.people.id).toBe(1);
   }));
 
-  it('should change people to the new one', fakeAsync(() => {
-    service.changePeople(PEOPLE[0]);
+  it('should display close button', fakeAsync(() => {
     tick();
     fixture.detectChanges(); // onInit()
-    expect(spy.calls.any()).toBe(true, 'people called');
-  }));
-
-
-  it('should display close button', () => {
-    fixture.detectChanges(); // onInit()
+    el = fixture.nativeElement.querySelector('.dialog-content');
     const button = el.querySelector('.mat-button');
     expect(button.textContent).toBe('Close');
-  });
+  }));
 });
 
 class Page {

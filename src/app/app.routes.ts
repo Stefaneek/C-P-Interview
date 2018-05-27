@@ -1,13 +1,13 @@
 import {Routes} from '@angular/router';
-import { PeopleList } from './people/people-list/people-list.component';
+import { PeopleListComponent } from './people/people-list/people-list.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: PeopleList
+    component: PeopleListComponent
   },
   {
     path: 'people/:id',
-    component: PeopleList,
+    component: PeopleListComponent,
   }
 ]
