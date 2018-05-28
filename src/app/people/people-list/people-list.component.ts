@@ -2,10 +2,10 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { RequestCacheService } from '../../http-interceptors/request-cache.service';
 import { PEOPLE } from '../../testing/people-data.service.mock';
 import { PersonProfileComponent } from '../person-profile/person-profile.component';
 import { PeopleDataService } from '../shared/people-data.service';
-import { RequestCacheService } from '../../http-interceptors/request-cache.service';
 import { People } from '../shared/people.mode';
 
 @Component({

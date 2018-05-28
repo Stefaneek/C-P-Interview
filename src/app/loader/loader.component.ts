@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Subscription } from 'rxjs/internal/Subscription';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+
 import { LoaderService } from './shared/loader.service';
 
 @Component({
